@@ -15,7 +15,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  int _count = 0;
+  int _count = 1;
   int _countTwo = 0;
   int _sum = 0;
   int _count3 = 0;
