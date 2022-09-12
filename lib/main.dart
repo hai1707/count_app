@@ -17,22 +17,26 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  int _count = 0, _countTwo = 0, _sum = 0, _count3 = 0, _count4 = 0, temp = 0;
-  
+  int _count = 0, _countTwo = 0, _count3 = 0, _count4 = 0, temp = 0;
+  int _sum = 0;
+
   final myController = TextEditingController();
   @override
   void setState(VoidCallback fn) {
     // ignore: todo
     // TODO: implement setState
-    temp = Random().nextInt(10);
-    _sum = (_count + _countTwo + _count3 + _count4) + 1;
     super.setState(fn);
   }
-
   @override
   void dispose() {
     myController.dispose();
     super.dispose();
+  }
+  @override
+  void initState() {
+    _sum = _count + _countTwo + _count3 + _count4;
+    // TODO: implement initState
+    super.initState();
   }
 
   @override
@@ -47,7 +51,7 @@ class _MyAppState extends State<MyApp> {
                 backgroundColor: (Colors.blueGrey),
                 onPressed: () {
                   setState(() {
-                    _count4 = temp;
+                      _count4 = Random().nextInt(10);
                   });
                 },
                 child: const Icon(Icons.question_mark)),
@@ -92,7 +96,10 @@ class _MyAppState extends State<MyApp> {
                 width: 50,
                 margin: const EdgeInsets.only(bottom: 80),
                 child: TextField(
-                    onChanged: (val) {
+                    decoration: const InputDecoration(
+                      hintText: "Type in here"
+                    ),
+                    onSubmitted: (val) {
                       setState(() {
                       });
                         _count3 = int.parse(myController.text);
