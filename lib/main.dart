@@ -34,7 +34,6 @@ class _MyAppState extends State<MyApp> {
   }
   @override
   void initState() {
-    _sum = _count + _countTwo + _count3 + _count4;
     // TODO: implement initState
     super.initState();
   }
@@ -43,6 +42,9 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        appBar: AppBar(
+          title: const Text("App đếm số"), 
+        ) ,
         floatingActionButton: Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -52,6 +54,8 @@ class _MyAppState extends State<MyApp> {
                 onPressed: () {
                   setState(() {
                       _count4 = Random().nextInt(10);
+                    _sum = _count+_countTwo+_count3+_count4;
+                      
                   });
                 },
                 child: const Icon(Icons.question_mark)),
@@ -61,7 +65,8 @@ class _MyAppState extends State<MyApp> {
                 onPressed: () {
                   setState(() {
                     _count++;
-                  });
+                    _sum = _count+_countTwo+_count3+_count4;
+                    });
                 },
                 child: const Icon(Icons.plus_one)),
             FloatingActionButton(
@@ -83,6 +88,7 @@ class _MyAppState extends State<MyApp> {
                 onPressed: () {
                   setState(() {
                     _countTwo++;
+                    _sum = _count+_countTwo+_count3+_count4;
                   });
                 },
                 child: const Icon(Icons.plus_one)),
@@ -93,16 +99,19 @@ class _MyAppState extends State<MyApp> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-                width: 50,
+                width: 150,
                 margin: const EdgeInsets.only(bottom: 80),
                 child: TextField(
                     decoration: const InputDecoration(
-                      hintText: "Type in here"
+                      hintText: "Số từ 1 đến 10",
+                      label: Text('Nhập vô đây',style: TextStyle(fontSize: 18)),
                     ),
                     onSubmitted: (val) {
                       setState(() {
                       });
                         _count3 = int.parse(myController.text);
+                        _sum = _count+_countTwo+_count3+_count4;
+
                     },
                     textInputAction: TextInputAction.go,
                     textAlign: TextAlign.center,
@@ -150,6 +159,15 @@ class _MyAppState extends State<MyApp> {
             ), 
           ],
         ),
+        bottomNavigationBar: BottomNavigationBar(items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home),
+          label: "Trang chu"
+          ),
+          BottomNavigationBarItem(icon: Icon(Icons.settings,),
+          label: "Setting"
+          )
+
+        ]) ,
       ),
     );
   }
